@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
+import TypingText from '@/components/TypingText';
 
 type Mode = 'signin' | 'signup';
 
 export default function LoginPage() {
   const router = useRouter();
+  const pathname = usePathname();
   const [mode, setMode] = useState<Mode>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,8 +56,11 @@ export default function LoginPage() {
     setMessage('');
   };
 
+  const subtitle = mode === 'signin' ? 'Sign in to your account' : 'Create your account';
+
   return (
     <div
+      className="animate-fade-slide-in"
       style={{
         minHeight: '100vh',
         display: 'flex',
@@ -66,13 +71,13 @@ export default function LoginPage() {
     >
       <div
         style={{
-          background: '#0d1f35',
-          border: '1px solid #1a3a5c',
+          background: '#241640',
+          border: '1px solid #3d2a5c',
           borderRadius: '12px',
           padding: '2.5rem 2rem',
           width: '100%',
           maxWidth: '400px',
-          boxShadow: '0 0 0 1px #1a3a5c, 0 -3px 0 0 #00e5ff',
+          boxShadow: '0 0 0 1px #3d2a5c, 0 -3px 0 0 #6b21a8',
         }}
       >
         {/* Title */}
@@ -81,23 +86,24 @@ export default function LoginPage() {
             style={{
               fontFamily: 'var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif',
               fontSize: '1.75rem',
-              fontWeight: 700,
-              color: '#00e5ff',
+              fontWeight: 800,
+              color: '#ff2d95',
               margin: '0 0 0.5rem',
               letterSpacing: '0.02em',
             }}
           >
             Mission Control
           </h1>
-          <p style={{ color: '#64748b', margin: 0, fontSize: '0.95rem' }}>
-            {mode === 'signin' ? 'Sign in to your account' : 'Create your account'}
+          {/* Typing effect — key changes when mode switches so it replays */}
+          <p style={{ color: '#9a8bb0', margin: 0, fontSize: '0.95rem' }}>
+            <TypingText key={`${pathname}-${mode}`} text={subtitle} />
           </p>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {/* Email */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <label style={{ color: '#94a3b8', fontSize: '0.85rem' }} htmlFor="email">
+            <label style={{ color: '#9a8bb0', fontSize: '0.85rem', fontWeight: 500 }} htmlFor="email">
               Email
             </label>
             <input
@@ -107,22 +113,22 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               style={{
-                background: '#050d1a',
-                border: '1px solid #1a3a5c',
+                background: '#1a1030',
+                border: '1px solid #3d2a5c',
                 borderRadius: '6px',
                 padding: '0.6rem 0.75rem',
-                color: '#e2e8f0',
+                color: '#ede9f5',
                 fontSize: '0.95rem',
                 outline: 'none',
               }}
-              onFocus={(e) => (e.target.style.borderColor = '#00e5ff')}
-              onBlur={(e) => (e.target.style.borderColor = '#1a3a5c')}
+              onFocus={(e) => (e.target.style.borderColor = '#6b21a8')}
+              onBlur={(e) => (e.target.style.borderColor = '#3d2a5c')}
             />
           </div>
 
           {/* Password */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <label style={{ color: '#94a3b8', fontSize: '0.85rem' }} htmlFor="password">
+            <label style={{ color: '#9a8bb0', fontSize: '0.85rem', fontWeight: 500 }} htmlFor="password">
               Password
             </label>
             <input
@@ -132,16 +138,16 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{
-                background: '#050d1a',
-                border: '1px solid #1a3a5c',
+                background: '#1a1030',
+                border: '1px solid #3d2a5c',
                 borderRadius: '6px',
                 padding: '0.6rem 0.75rem',
-                color: '#e2e8f0',
+                color: '#ede9f5',
                 fontSize: '0.95rem',
                 outline: 'none',
               }}
-              onFocus={(e) => (e.target.style.borderColor = '#00e5ff')}
-              onBlur={(e) => (e.target.style.borderColor = '#1a3a5c')}
+              onFocus={(e) => (e.target.style.borderColor = '#6b21a8')}
+              onBlur={(e) => (e.target.style.borderColor = '#3d2a5c')}
             />
           </div>
 
@@ -165,11 +171,11 @@ export default function LoginPage() {
           {message && (
             <div
               style={{
-                background: 'rgba(0, 229, 255, 0.08)',
-                border: '1px solid #00e5ff',
+                background: 'rgba(107,33,168,0.12)',
+                border: '1px solid #6b21a8',
                 borderRadius: '6px',
                 padding: '0.6rem 0.75rem',
-                color: '#00e5ff',
+                color: '#ede9f5',
                 fontSize: '0.875rem',
               }}
             >
@@ -182,8 +188,8 @@ export default function LoginPage() {
             type="submit"
             disabled={isLoading}
             style={{
-              background: '#00e5ff',
-              color: '#050d1a',
+              background: '#6b21a8',
+              color: '#ede9f5',
               border: 'none',
               borderRadius: '6px',
               padding: '0.7rem 1rem',
@@ -200,16 +206,17 @@ export default function LoginPage() {
         </form>
 
         {/* Toggle */}
-        <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#64748b' }}>
+        <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#9a8bb0' }}>
           {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
           <button
             onClick={toggleMode}
             style={{
               background: 'none',
               border: 'none',
-              color: '#00e5ff',
+              color: '#ff2d95',
               cursor: 'pointer',
               fontSize: 'inherit',
+              fontWeight: 600,
               padding: 0,
               textDecoration: 'underline',
             }}

@@ -8,46 +8,49 @@ export default function PlanDisplay({ plan }: PlanDisplayProps) {
   const steps = plan.split('\n').filter((line) => line.trim() !== '');
 
   return (
-    <div
-      className="w-full rounded-xl border p-6 animate-fade-slide-in"
-      style={{ background: '#0d1f35', borderColor: '#1a3a5c' }}
-    >
-      <h2
-        className="mb-4 text-xl font-bold"
-        style={{ color: '#e2e8f0', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+    <div className="card-scan-border rounded-xl animate-fade-slide-in">
+      <div
+        className="w-full rounded-xl p-6"
+        style={{ background: '#241640' }}
       >
-        Your Build Plan
-      </h2>
-      <ol className="flex flex-col gap-3">
-        {steps.map((step, index) => (
-          <li
-            key={index}
-            className="flex gap-3 leading-relaxed rounded-lg p-3 border-l-2"
-            style={{
-              background: 'rgba(0,229,255,0.03)',
-              borderLeftColor: '#00e5ff',
-              borderTopColor: 'transparent',
-              borderRightColor: 'transparent',
-              borderBottomColor: 'transparent',
-            }}
-          >
-            <span
-              className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+        <h2
+          className="mb-4 text-xl font-bold"
+          style={{ color: '#ede9f5', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+        >
+          Your Build Plan
+        </h2>
+        <ol className="flex flex-col gap-3">
+          {steps.map((step, index) => (
+            <li
+              key={index}
+              className="flex gap-3 leading-relaxed rounded-lg p-3 border-l-2 stagger-item"
               style={{
-                background: 'rgba(0, 229, 255, 0.15)',
-                color: '#00e5ff',
-                border: '1px solid rgba(0, 229, 255, 0.3)',
+                background: 'rgba(107,33,168,0.08)',
+                borderLeftColor: '#6b21a8',
+                borderTopColor: 'transparent',
+                borderRightColor: 'transparent',
+                borderBottomColor: 'transparent',
+                animationDelay: `${index * 0.1}s`,
               }}
             >
-              {index + 1}
-            </span>
-            {/* Strip any leading "Step N:" prefix from the placeholder text */}
-            <span className="text-sm" style={{ color: '#e2e8f0' }}>
-              {step.replace(/^Step\s+\d+:\s*/i, '')}
-            </span>
-          </li>
-        ))}
-      </ol>
+              <span
+                className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+                style={{
+                  background: 'rgba(107,33,168,0.2)',
+                  color: '#ff2d95',
+                  border: '1px solid rgba(255,45,149,0.4)',
+                }}
+              >
+                {index + 1}
+              </span>
+              {/* Strip any leading "Step N:" prefix */}
+              <span className="text-sm font-medium" style={{ color: '#ede9f5' }}>
+                {step.replace(/^Step\s+\d+:\s*/i, '')}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }

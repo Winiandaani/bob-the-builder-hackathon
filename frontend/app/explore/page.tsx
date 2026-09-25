@@ -1,21 +1,46 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import ScanningAnimation from '@/components/ScanningAnimation';
 import RepoResultCards from '@/components/RepoResultCards';
+import TypingText from '@/components/TypingText';
 import { fetchRepoAnalysis, RepoAnalysis } from '@/lib/repoApi';
 import { useAuth } from '@/lib/auth';
 import { supabase } from '@/lib/supabaseClient';
+import { createRipple } from '@/lib/ripple';
+
+const STATUS_MESSAGES = [
+  'Fetching repository...',
+  'Analyzing structure...',
+  'Generating insights...',
+];
+
+const SUBTITLE = 'Paste a public GitHub repo URL to scan its architecture and get AI insights.';
 
 export default function ExplorePage() {
   const { user } = useAuth();
+  const pathname = usePathname();
 
   const [repoUrl, setRepoUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<RepoAnalysis | null>(null);
   const [saved, setSaved] = useState(false);
+  const [statusIndex, setStatusIndex] = useState(0);
+
+  // Cycle status text every 1.5s while loading
+  useEffect(() => {
+    if (!isLoading) {
+      setStatusIndex(0);
+      return;
+    }
+    const id = setInterval(() => {
+      setStatusIndex((prev) => (prev + 1) % STATUS_MESSAGES.length);
+    }, 1500);
+    return () => clearInterval(id);
+  }, [isLoading]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -65,46 +90,51 @@ export default function ExplorePage() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-16" style={{ background: '#050d1a' }}>
+    <main className="min-h-screen px-4 py-16">
       <div className="animate-fade-slide-in max-w-2xl mx-auto flex flex-col gap-8">
 
-        {/* Heading */}
+        {/* Heading — pink dominant */}
         <div className="flex flex-col gap-2">
           <h1
             className="text-3xl font-bold"
             style={{
-              color: '#00e5ff',
+              color: '#ff2d95',
               fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif',
             }}
           >
             Code Explorer
           </h1>
-          <p className="text-sm" style={{ color: '#64748b' }}>
-            Paste a public GitHub repo URL to scan its architecture and get AI insights.
+          {/* Typing effect — key on pathname so it replays on every navigation */}
+          <p className="text-sm" style={{ color: '#9a8bb0' }}>
+            <TypingText key={pathname} text={SUBTITLE} />
           </p>
         </div>
 
-        {/* Input form — hidden while loading */}
+        {/* Input form — hidden while loading or showing results */}
         {!isLoading && !result && (
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <label
               htmlFor="repoUrl"
               className="text-sm font-medium tracking-wide"
-              style={{ color: '#64748b', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+              style={{ color: '#9a8bb0', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
             >
               GitHub repository URL
             </label>
+
+            {/* card-scan-border on the input wrapper */}
+            {/* Static border on the input — matches Idea Planner textarea treatment */}
             <input
               id="repoUrl"
               type="text"
               value={repoUrl}
               onChange={(e) => setRepoUrl(e.target.value)}
               placeholder="https://github.com/owner/repo"
-              className="w-full rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#00e5ff] transition-colors"
+              className="w-full rounded-lg p-3 focus:outline-none transition-colors"
               style={{
-                background: '#0d1f35',
-                border: '1px solid #1a3a5c',
-                color: '#e2e8f0',
+                background: '#241640',
+                border: '1px solid #ff2d95',
+                color: '#ede9f5',
+                display: 'block',
               }}
             />
 
@@ -121,37 +151,27 @@ export default function ExplorePage() {
               </div>
             )}
 
+            {/* Scan Repo button — pink dominant */}
             <button
               type="submit"
-              className="self-end rounded-lg px-6 py-2.5 text-sm font-bold transition-all hover:brightness-110 active:scale-[0.97]"
-              style={{ background: '#00e5ff', color: '#050d1a' }}
+              onMouseDown={(e) => createRipple(e, 'rgba(255,45,149,0.35)')}
+              className="self-end rounded-lg px-6 py-2.5 text-sm font-bold transition-colors active:scale-[0.95] btn-glow-pink"
+              style={{
+                background: '#ff2d95',
+                color: '#fff',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
             >
               Scan Repo
             </button>
           </form>
         )}
 
-        {/* Loading state */}
+        {/* Loading state with cycling status */}
         {isLoading && (
           <div className="flex flex-col items-center gap-4 py-12">
-            <ScanningAnimation />
-            <p className="text-sm" style={{ color: '#64748b' }}>
-              Fetching repo data and running AI analysis...
-            </p>
-          </div>
-        )}
-
-        {/* Error shown outside form (e.g. after a previous attempt was reset) */}
-        {!isLoading && result === null && error && !repoUrl && (
-          <div
-            className="rounded-lg border px-4 py-3 text-sm"
-            style={{
-              background: 'rgba(248,113,113,0.1)',
-              borderColor: '#f87171',
-              color: '#f87171',
-            }}
-          >
-            {error}
+            <ScanningAnimation statusText={STATUS_MESSAGES[statusIndex]} />
           </div>
         )}
 
@@ -172,17 +192,17 @@ export default function ExplorePage() {
               </p>
             )}
             {user && !saved && (
-              <p className="text-sm" style={{ color: '#64748b' }}>
+              <p className="text-sm" style={{ color: '#9a8bb0' }}>
                 Saving to your history…
               </p>
             )}
             {!user && (
               <div
                 className="rounded-xl border px-5 py-4 text-sm"
-                style={{ background: '#0d1f35', borderColor: '#1a3a5c', color: '#e2e8f0' }}
+                style={{ background: '#241640', borderColor: '#ff2d95', color: '#ede9f5' }}
               >
                 Sign in to save this to your history.{' '}
-                <Link href="/login" className="font-semibold hover:underline" style={{ color: '#00e5ff' }}>
+                <Link href="/login" className="font-semibold hover:underline" style={{ color: '#ff2d95' }}>
                   Sign in
                 </Link>
               </div>
@@ -191,11 +211,14 @@ export default function ExplorePage() {
             {/* Scan another repo */}
             <button
               onClick={handleReset}
-              className="self-start rounded-lg px-5 py-2 text-sm font-medium border transition-all hover:brightness-110"
+              onMouseDown={(e) => createRipple(e, 'rgba(255,45,149,0.2)')}
+              className="self-start rounded-lg px-5 py-2 text-sm font-medium border transition-all hover:brightness-110 btn-glow-pink"
               style={{
                 background: 'transparent',
-                borderColor: '#1a3a5c',
-                color: '#e2e8f0',
+                borderColor: '#ff2d95',
+                color: '#ff2d95',
+                position: 'relative',
+                overflow: 'hidden',
               }}
             >
               ← Scan another repo

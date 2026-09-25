@@ -1,14 +1,19 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import IdeaForm from '@/components/IdeaForm';
 import PlanDisplay from '@/components/PlanDisplay';
+import TypingText from '@/components/TypingText';
 import { fetchPlan } from '@/lib/api';
+
+const SUBTITLE = 'Describe your idea. Get a mission-ready build plan.';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [plan, setPlan] = useState('');
   const [error, setError] = useState('');
+  const pathname = usePathname();
 
   async function handleSubmit(idea: string) {
     setIsLoading(true);
@@ -33,12 +38,13 @@ export default function Home() {
         <div className="text-center">
           <h1
             className="text-3xl font-bold"
-            style={{ color: '#00e5ff', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+            style={{ color: '#6b21a8', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
           >
             Idea Planner
           </h1>
-          <p className="mt-2" style={{ color: '#64748b' }}>
-            Describe your idea. Get a mission-ready build plan.
+          {/* Typing effect — key on pathname so it replays on every navigation */}
+          <p className="mt-2" style={{ color: '#9a8bb0' }}>
+            <TypingText key={pathname} text={SUBTITLE} />
           </p>
         </div>
 
@@ -51,7 +57,7 @@ export default function Home() {
             className="rounded-lg border p-4 text-sm"
             style={{
               borderColor: '#f87171',
-              background: 'rgba(248, 113, 113, 0.1)',
+              background: 'rgba(248,113,113,0.1)',
               color: '#f87171',
             }}
           >

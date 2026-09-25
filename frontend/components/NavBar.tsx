@@ -19,8 +19,8 @@ export default function NavBar() {
   return (
     <nav
       style={{
-        background: '#0d1f35',
-        borderBottom: '1px solid #1a3a5c',
+        background: '#241640',
+        borderBottom: '1px solid #3d2a5c',
         padding: '0 1.5rem',
         display: 'flex',
         alignItems: 'center',
@@ -36,9 +36,9 @@ export default function NavBar() {
         href="/"
         style={{
           fontFamily: 'var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif',
-          fontWeight: 700,
+          fontWeight: 800,
           fontSize: '1.1rem',
-          color: '#00e5ff',
+          color: '#ff2d95',
           textDecoration: 'none',
           letterSpacing: '0.03em',
           flexShrink: 0,
@@ -63,11 +63,11 @@ export default function NavBar() {
               key={link.href}
               href={link.href}
               style={{
-                color: isActive ? '#00e5ff' : '#94a3b8',
+                color: isActive ? '#ff2d95' : '#9a8bb0',
                 textDecoration: 'none',
                 fontSize: '0.9rem',
-                fontWeight: isActive ? 600 : 400,
-                borderBottom: isActive ? '2px solid #00e5ff' : '2px solid transparent',
+                fontWeight: isActive ? 700 : 500,
+                borderBottom: isActive ? '2px solid #ff2d95' : '2px solid transparent',
                 paddingBottom: '2px',
                 transition: 'color 0.15s',
               }}
@@ -84,7 +84,7 @@ export default function NavBar() {
           <>
             <span
               style={{
-                color: '#64748b',
+                color: '#9a8bb0',
                 fontSize: '0.85rem',
                 maxWidth: '140px',
                 overflow: 'hidden',
@@ -99,8 +99,8 @@ export default function NavBar() {
               onClick={signOut}
               style={{
                 background: 'transparent',
-                border: '1px solid #1a3a5c',
-                color: '#94a3b8',
+                border: '1px solid #3d2a5c',
+                color: '#9a8bb0',
                 borderRadius: '6px',
                 padding: '4px 12px',
                 fontSize: '0.85rem',
@@ -114,12 +114,12 @@ export default function NavBar() {
           <Link
             href="/login"
             style={{
-              background: '#00e5ff',
-              color: '#050d1a',
+              background: '#6b21a8',
+              color: '#ede9f5',
               borderRadius: '6px',
               padding: '4px 14px',
               fontSize: '0.85rem',
-              fontWeight: 600,
+              fontWeight: 700,
               textDecoration: 'none',
             }}
           >
@@ -135,7 +135,7 @@ export default function NavBar() {
           style={{
             background: 'transparent',
             border: 'none',
-            color: '#94a3b8',
+            color: '#9a8bb0',
             cursor: 'pointer',
             fontSize: '1.4rem',
             lineHeight: 1,

@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
 import { supabase } from '@/lib/supabaseClient';
 import HistoryCard from '@/components/HistoryCard';
+import TypingText from '@/components/TypingText';
 
 interface PlanRecord {
   id: string;
@@ -24,6 +25,7 @@ interface RepoRecord {
 export default function HistoryPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [plans, setPlans] = useState<PlanRecord[]>([]);
   const [repos, setRepos] = useState<RepoRecord[]>([]);
@@ -68,11 +70,8 @@ export default function HistoryPage() {
   // While auth is resolving, show nothing to avoid a redirect flash
   if (loading) {
     return (
-      <main
-        className="min-h-screen flex items-center justify-center"
-        style={{ background: '#050d1a' }}
-      >
-        <p style={{ color: '#64748b' }}>Loading…</p>
+      <main className="min-h-screen flex items-center justify-center">
+        <p style={{ color: '#9a8bb0' }}>Loading…</p>
       </main>
     );
   }
@@ -82,24 +81,21 @@ export default function HistoryPage() {
   if (!user) return null;
 
   return (
-    <main
-      className="min-h-screen px-4 py-16"
-      style={{ background: '#050d1a' }}
-    >
+    <main className="min-h-screen px-4 py-16">
       <div className="max-w-3xl mx-auto flex flex-col gap-12 animate-fade-slide-in">
         {/* Page heading */}
         <div className="flex flex-col gap-2">
           <h1
             className="text-4xl font-bold"
             style={{
-              color: '#00e5ff',
+              color: '#6b21a8',
               fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif',
             }}
           >
             Mission History
           </h1>
-          <p className="text-base" style={{ color: '#64748b' }}>
-            Your saved plans and explored repos.
+          <p className="text-base" style={{ color: '#9a8bb0' }}>
+            <TypingText key={pathname} text="Your saved plans and explored repos." />
           </p>
         </div>
 
@@ -108,16 +104,16 @@ export default function HistoryPage() {
           <div className="flex items-center gap-3">
             <h2
               className="text-xl font-semibold"
-              style={{ color: '#e2e8f0', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+              style={{ color: '#ede9f5', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
             >
               Idea Plans
             </h2>
             <span
               className="px-2 py-0.5 rounded-full text-xs font-bold"
               style={{
-                background: 'rgba(0,229,255,0.12)',
-                color: '#00e5ff',
-                border: '1px solid rgba(0,229,255,0.25)',
+                background: 'rgba(107,33,168,0.2)',
+                color: '#ff2d95',
+                border: '1px solid rgba(107,33,168,0.4)',
               }}
             >
               {plans.length}
@@ -125,16 +121,16 @@ export default function HistoryPage() {
           </div>
 
           {plansLoading ? (
-            <p style={{ color: '#64748b' }}>Loading…</p>
+            <p style={{ color: '#9a8bb0' }}>Loading…</p>
           ) : plans.length === 0 ? (
             <div
               className="rounded-xl p-6 text-center"
-              style={{ background: '#0d1f35', border: '1px solid #1a3a5c' }}
+              style={{ background: '#241640', border: '1px solid #3d2a5c' }}
             >
-              <p className="text-sm mb-2" style={{ color: '#64748b' }}>
+              <p className="text-sm mb-2" style={{ color: '#9a8bb0' }}>
                 No plans saved yet.
               </p>
-              <a href="/" style={{ color: '#00e5ff' }} className="text-sm">
+              <a href="/" style={{ color: '#ff2d95' }} className="text-sm font-medium">
                 → Try Idea Planner
               </a>
             </div>
@@ -158,16 +154,16 @@ export default function HistoryPage() {
           <div className="flex items-center gap-3">
             <h2
               className="text-xl font-semibold"
-              style={{ color: '#e2e8f0', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+              style={{ color: '#ede9f5', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
             >
               Repo Explorations
             </h2>
             <span
               className="px-2 py-0.5 rounded-full text-xs font-bold"
               style={{
-                background: 'rgba(168,85,247,0.12)',
-                color: '#a855f7',
-                border: '1px solid rgba(168,85,247,0.25)',
+                background: 'rgba(255,45,149,0.12)',
+                color: '#ff2d95',
+                border: '1px solid rgba(255,45,149,0.3)',
               }}
             >
               {repos.length}
@@ -175,16 +171,16 @@ export default function HistoryPage() {
           </div>
 
           {reposLoading ? (
-            <p style={{ color: '#64748b' }}>Loading…</p>
+            <p style={{ color: '#9a8bb0' }}>Loading…</p>
           ) : repos.length === 0 ? (
             <div
               className="rounded-xl p-6 text-center"
-              style={{ background: '#0d1f35', border: '1px solid #1a3a5c' }}
+              style={{ background: '#241640', border: '1px solid #3d2a5c' }}
             >
-              <p className="text-sm mb-2" style={{ color: '#64748b' }}>
+              <p className="text-sm mb-2" style={{ color: '#9a8bb0' }}>
                 No repos explored yet.
               </p>
-              <a href="/explore" style={{ color: '#00e5ff' }} className="text-sm">
+              <a href="/explore" style={{ color: '#ff2d95' }} className="text-sm font-medium">
                 → Try Code Explorer
               </a>
             </div>
