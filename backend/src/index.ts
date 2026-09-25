@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import planRouter from './routes/plan';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -18,6 +19,9 @@ app.use(express.json());
 app.get('/', (_req, res) => {
   res.send('Project Idea Planner API is running ✓');
 });
+
+// Routes
+app.use('/api', planRouter);
 
 // Start the server
 app.listen(PORT, () => {
