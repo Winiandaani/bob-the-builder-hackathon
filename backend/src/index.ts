@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import planRouter from './routes/plan';
+import exploreRouter from './routes/explore';
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -19,6 +20,7 @@ app.get('/', (_req, res) => {
 
 // Routes
 app.use('/api', planRouter);
+app.use('/api', exploreRouter);
 
 // Start the server
 app.listen(PORT, () => {

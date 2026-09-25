@@ -26,14 +26,19 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-gray-50 px-4 py-16">
-      <div className="w-full max-w-2xl flex flex-col gap-8">
+    <main className="flex min-h-screen flex-col items-center px-4 py-16">
+      <div className="w-full max-w-2xl flex flex-col gap-8 animate-fade-slide-in">
 
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Project Idea Planner</h1>
-          <p className="mt-2 text-gray-500">
-            Describe your idea in plain English and get a step-by-step build plan.
+          <h1
+            className="text-3xl font-bold"
+            style={{ color: '#00e5ff', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+          >
+            Idea Planner
+          </h1>
+          <p className="mt-2" style={{ color: '#64748b' }}>
+            Describe your idea. Get a mission-ready build plan.
           </p>
         </div>
 
@@ -42,7 +47,14 @@ export default function Home() {
 
         {/* API error */}
         {error && (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+          <div
+            className="rounded-lg border p-4 text-sm"
+            style={{
+              borderColor: '#f87171',
+              background: 'rgba(248, 113, 113, 0.1)',
+              color: '#f87171',
+            }}
+          >
             {error}
           </div>
         )}
