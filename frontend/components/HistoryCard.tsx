@@ -26,27 +26,27 @@ export default function HistoryCard(props: HistoryCardProps) {
     return (
       <div
         className="rounded-xl p-5 flex flex-col gap-3"
-        style={{ background: '#241640', border: '1px solid #3d2a5c' }}
+        style={{ background: 'rgba(22,36,58,0.92)', border: '1px solid #263a52' }}
       >
         {/* Top row */}
         <div className="flex items-center justify-between gap-2">
           <span
             className="px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
             style={{
-              background: 'rgba(107,33,168,0.2)',
-              color: '#ff2d95',
-              border: '1px solid rgba(255,45,149,0.35)',
+              background: 'rgba(95,168,160,0.15)',
+              color: '#5fa8a0',
+              border: '1px solid rgba(95,168,160,0.35)',
             }}
           >
             Plan
           </span>
-          <span className="text-sm" style={{ color: '#9a8bb0' }}>
+          <span className="text-sm" style={{ color: '#7d8ba0' }}>
             {formatDate(props.createdAt)}
           </span>
         </div>
 
         {/* Idea */}
-        <p className="font-semibold text-base" style={{ color: '#ede9f5' }}>
+        <p className="font-semibold text-base" style={{ color: '#dce4ec' }}>
           {props.idea}
         </p>
 
@@ -54,7 +54,7 @@ export default function HistoryCard(props: HistoryCardProps) {
         <button
           onClick={() => setIsExpanded((prev) => !prev)}
           className="self-start text-sm font-medium"
-          style={{ color: '#ff2d95', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
+          style={{ color: '#5fa8a0', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
         >
           {isExpanded ? 'Hide steps' : 'Show steps'}
         </button>
@@ -67,8 +67,8 @@ export default function HistoryCard(props: HistoryCardProps) {
                 key={index}
                 className="flex gap-3 leading-relaxed rounded-lg p-3 border-l-2 stagger-item"
                 style={{
-                  background: 'rgba(107,33,168,0.08)',
-                  borderLeftColor: '#6b21a8',
+                  background: 'rgba(95,168,160,0.07)',
+                  borderLeftColor: '#5fa8a0',
                   borderTopColor: 'transparent',
                   borderRightColor: 'transparent',
                   borderBottomColor: 'transparent',
@@ -78,14 +78,14 @@ export default function HistoryCard(props: HistoryCardProps) {
                 <span
                   className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold"
                   style={{
-                    background: 'rgba(107,33,168,0.2)',
-                    color: '#ff2d95',
-                    border: '1px solid rgba(255,45,149,0.4)',
+                    background: 'rgba(95,168,160,0.18)',
+                    color: '#5fa8a0',
+                    border: '1px solid rgba(95,168,160,0.45)',
                   }}
                 >
                   {index + 1}
                 </span>
-                <span className="text-sm font-medium" style={{ color: '#ede9f5' }}>
+                <span className="text-sm font-medium" style={{ color: '#dce4ec' }}>
                   {step}
                 </span>
               </li>
@@ -100,28 +100,28 @@ export default function HistoryCard(props: HistoryCardProps) {
   return (
     <div
       className="rounded-xl p-5 flex flex-col gap-3"
-      style={{ background: '#241640', border: '1px solid #3d2a5c' }}
+      style={{ background: 'rgba(22,36,58,0.92)', border: '1px solid #263a52' }}
     >
       {/* Top row */}
       <div className="flex items-center justify-between gap-2">
         <span
           className="px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
           style={{
-            background: 'rgba(255,45,149,0.12)',
-            color: '#ff2d95',
-            border: '1px solid rgba(255,45,149,0.3)',
+            background: 'rgba(201,123,86,0.12)',
+            color: '#c97b56',
+            border: '1px solid rgba(201,123,86,0.3)',
           }}
         >
           Repo
         </span>
-        <span className="text-sm" style={{ color: '#9a8bb0' }}>
+        <span className="text-sm" style={{ color: '#7d8ba0' }}>
           {formatDate(props.createdAt)}
         </span>
       </div>
 
       {/* Repo name */}
-      <p className="font-semibold text-base" style={{ color: '#ede9f5' }}>
-        <span style={{ color: '#6b21a8' }}>⬡ </span>
+      <p className="font-semibold text-base" style={{ color: '#dce4ec' }}>
+        <span style={{ color: '#c97b56' }}>⬡ </span>
         {props.repoName}
       </p>
 
@@ -129,7 +129,7 @@ export default function HistoryCard(props: HistoryCardProps) {
       <p
         className="text-sm font-medium"
         style={{
-          color: '#9a8bb0',
+          color: '#7d8ba0',
           overflow: 'hidden',
           display: '-webkit-box',
           WebkitLineClamp: 2,
@@ -145,7 +145,7 @@ export default function HistoryCard(props: HistoryCardProps) {
         target="_blank"
         rel="noopener noreferrer"
         className="self-start text-sm font-medium"
-        style={{ color: '#ff2d95' }}
+        style={{ color: '#c97b56' }}
       >
         View on GitHub →
       </a>

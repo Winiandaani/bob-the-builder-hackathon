@@ -38,12 +38,12 @@ export default function Home() {
         <div className="text-center">
           <h1
             className="text-3xl font-bold"
-            style={{ color: '#6b21a8', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+            style={{ color: '#5fa8a0', fontFamily: "'Cabinet Grotesk', system-ui, sans-serif" }}
           >
             Idea Planner
           </h1>
           {/* Typing effect — key on pathname so it replays on every navigation */}
-          <p className="mt-2" style={{ color: '#9a8bb0' }}>
+          <p className="mt-2" style={{ color: '#7d8ba0', fontWeight: 500 }}>
             <TypingText key={pathname} text={SUBTITLE} />
           </p>
         </div>

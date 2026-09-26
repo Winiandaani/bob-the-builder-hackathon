@@ -93,19 +93,19 @@ export default function ExplorePage() {
     <main className="min-h-screen px-4 py-16">
       <div className="animate-fade-slide-in max-w-2xl mx-auto flex flex-col gap-8">
 
-        {/* Heading — pink dominant */}
+        {/* Heading — orange dominant */}
         <div className="flex flex-col gap-2">
           <h1
             className="text-3xl font-bold"
             style={{
-              color: '#ff2d95',
-              fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif',
+              color: '#c97b56',
+              fontFamily: "'Cabinet Grotesk', system-ui, sans-serif",
             }}
           >
             Code Explorer
           </h1>
           {/* Typing effect — key on pathname so it replays on every navigation */}
-          <p className="text-sm" style={{ color: '#9a8bb0' }}>
+          <p className="text-sm" style={{ color: '#7d8ba0', fontWeight: 500 }}>
             <TypingText key={pathname} text={SUBTITLE} />
           </p>
         </div>
@@ -116,12 +116,11 @@ export default function ExplorePage() {
             <label
               htmlFor="repoUrl"
               className="text-sm font-medium tracking-wide"
-              style={{ color: '#9a8bb0', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+              style={{ color: '#7d8ba0', fontFamily: "'Cabinet Grotesk', system-ui, sans-serif" }}
             >
               GitHub repository URL
             </label>
 
-            {/* card-scan-border on the input wrapper */}
             {/* Static border on the input — matches Idea Planner textarea treatment */}
             <input
               id="repoUrl"
@@ -131,9 +130,9 @@ export default function ExplorePage() {
               placeholder="https://github.com/owner/repo"
               className="w-full rounded-lg p-3 focus:outline-none transition-colors"
               style={{
-                background: '#241640',
-                border: '1px solid #ff2d95',
-                color: '#ede9f5',
+                background: 'rgba(22,36,58,0.92)',
+                border: '1px solid #c97b56',
+                color: '#dce4ec',
                 display: 'block',
               }}
             />
@@ -151,13 +150,13 @@ export default function ExplorePage() {
               </div>
             )}
 
-            {/* Scan Repo button — pink dominant */}
+            {/* Scan Repo button — orange dominant */}
             <button
               type="submit"
-              onMouseDown={(e) => createRipple(e, 'rgba(255,45,149,0.35)')}
+              onMouseDown={(e) => createRipple(e, 'rgba(201,123,86,0.35)')}
               className="self-end rounded-lg px-6 py-2.5 text-sm font-bold transition-colors active:scale-[0.95] btn-glow-pink"
               style={{
-                background: '#ff2d95',
+                background: '#c97b56',
                 color: '#fff',
                 position: 'relative',
                 overflow: 'hidden',
@@ -192,17 +191,17 @@ export default function ExplorePage() {
               </p>
             )}
             {user && !saved && (
-              <p className="text-sm" style={{ color: '#9a8bb0' }}>
+              <p className="text-sm" style={{ color: '#7d8ba0' }}>
                 Saving to your history…
               </p>
             )}
             {!user && (
               <div
                 className="rounded-xl border px-5 py-4 text-sm"
-                style={{ background: '#241640', borderColor: '#ff2d95', color: '#ede9f5' }}
+                style={{ background: 'rgba(22,36,58,0.92)', borderColor: '#c97b56', color: '#dce4ec' }}
               >
                 Sign in to save this to your history.{' '}
-                <Link href="/login" className="font-semibold hover:underline" style={{ color: '#ff2d95' }}>
+                <Link href="/login" className="font-semibold hover:underline" style={{ color: '#c97b56' }}>
                   Sign in
                 </Link>
               </div>
@@ -211,12 +210,12 @@ export default function ExplorePage() {
             {/* Scan another repo */}
             <button
               onClick={handleReset}
-              onMouseDown={(e) => createRipple(e, 'rgba(255,45,149,0.2)')}
+              onMouseDown={(e) => createRipple(e, 'rgba(201,123,86,0.2)')}
               className="self-start rounded-lg px-5 py-2 text-sm font-medium border transition-all hover:brightness-110 btn-glow-pink"
               style={{
                 background: 'transparent',
-                borderColor: '#ff2d95',
-                color: '#ff2d95',
+                borderColor: '#c97b56',
+                color: '#c97b56',
                 position: 'relative',
                 overflow: 'hidden',
               }}

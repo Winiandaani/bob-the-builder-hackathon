@@ -15,23 +15,23 @@ export default function RepoResultCards({
   const cards = [
     {
       badge: 'What it does',
-      badgeColor: '#ff2d95',
-      badgeBg: 'rgba(255,45,149,0.15)',
-      badgeBorder: 'rgba(255,45,149,0.35)',
-      content: <p className="text-sm font-medium leading-relaxed" style={{ color: '#ede9f5' }}>{explanation}</p>,
+      badgeColor: '#c97b56',
+      badgeBg: 'rgba(201,123,86,0.15)',
+      badgeBorder: 'rgba(201,123,86,0.35)',
+      content: <p className="text-sm font-medium leading-relaxed" style={{ color: '#dce4ec' }}>{explanation}</p>,
     },
     {
       badge: 'Tech Stack',
-      badgeColor: '#ede9f5',
-      badgeBg: 'rgba(107,33,168,0.25)',
-      badgeBorder: 'rgba(107,33,168,0.5)',
-      content: <p className="text-sm font-medium leading-relaxed" style={{ color: '#ede9f5' }}>{techStack}</p>,
+      badgeColor: '#dce4ec',
+      badgeBg: 'rgba(125,80,145,0.2)',
+      badgeBorder: 'rgba(125,80,145,0.45)',
+      content: <p className="text-sm font-medium leading-relaxed" style={{ color: '#dce4ec' }}>{techStack}</p>,
     },
     {
       badge: 'Good First Tasks',
-      badgeColor: '#ff2d95',
-      badgeBg: 'rgba(255,45,149,0.12)',
-      badgeBorder: 'rgba(255,45,149,0.3)',
+      badgeColor: '#c97b56',
+      badgeBg: 'rgba(201,123,86,0.12)',
+      badgeBorder: 'rgba(201,123,86,0.3)',
       content: (
         <ol className="flex flex-col gap-2">
           {suggestedTasks.map((task, i) => (
@@ -39,14 +39,14 @@ export default function RepoResultCards({
               <span
                 className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold"
                 style={{
-                  background: 'rgba(107,33,168,0.25)',
-                  color: '#ff2d95',
-                  border: '1px solid rgba(255,45,149,0.4)',
+                  background: 'rgba(201,123,86,0.18)',
+                  color: '#c97b56',
+                  border: '1px solid rgba(201,123,86,0.4)',
                 }}
               >
                 {i + 1}
               </span>
-              <span className="text-sm font-medium leading-relaxed" style={{ color: '#ede9f5' }}>{task}</span>
+              <span className="text-sm font-medium leading-relaxed" style={{ color: '#dce4ec' }}>{task}</span>
             </li>
           ))}
         </ol>
@@ -56,10 +56,10 @@ export default function RepoResultCards({
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Repo title — pink dominant on Code Explorer */}
+      {/* Repo title — orange dominant on Code Explorer */}
       <h2
         className="text-2xl font-bold flex items-center gap-2"
-        style={{ color: '#ff2d95', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+        style={{ color: '#c97b56', fontFamily: "'Cabinet Grotesk', system-ui, sans-serif" }}
       >
         <span style={{ fontSize: '1.4rem' }}>⬡</span>
         <span>{repoName}</span>
@@ -73,7 +73,7 @@ export default function RepoResultCards({
         >
           <div
             className="rounded-xl p-5 flex flex-col gap-3"
-            style={{ background: '#241640' }}
+            style={{ background: 'rgba(22,36,58,0.92)' }}
           >
             <span
               className="text-xs font-bold tracking-widest uppercase"

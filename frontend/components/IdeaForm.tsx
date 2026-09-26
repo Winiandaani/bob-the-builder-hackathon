@@ -28,7 +28,7 @@ export default function IdeaForm({ onSubmit, isLoading }: IdeaFormProps) {
       <label
         htmlFor="idea"
         className="text-sm font-medium tracking-wide"
-        style={{ color: '#9a8bb0', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+        style={{ color: '#7d8ba0', fontFamily: "'Cabinet Grotesk', system-ui, sans-serif" }}
       >
         Describe your project idea
       </label>
@@ -42,9 +42,9 @@ export default function IdeaForm({ onSubmit, isLoading }: IdeaFormProps) {
         rows={4}
         className="w-full rounded-lg p-3 focus:outline-none resize-none transition-colors"
         style={{
-          background: '#241640',
-          border: '1px solid #6b21a8',
-          color: '#ede9f5',
+          background: 'rgba(22,36,58,0.92)',
+          border: '1px solid #5fa8a0',
+          color: '#dce4ec',
           display: 'block',
         }}
         disabled={isLoading}
@@ -59,11 +59,11 @@ export default function IdeaForm({ onSubmit, isLoading }: IdeaFormProps) {
       <button
         type="submit"
         disabled={isLoading}
-        onMouseDown={(e) => createRipple(e, 'rgba(107,33,168,0.35)')}
+        onMouseDown={(e) => createRipple(e, 'rgba(95,168,160,0.35)')}
         className="self-end rounded-lg px-6 py-2.5 text-sm font-bold transition-colors active:scale-[0.95] disabled:cursor-not-allowed disabled:opacity-60 btn-glow-purple"
         style={{
-          background: '#6b21a8',
-          color: '#ede9f5',
+          background: '#5fa8a0',
+          color: '#0f1b2e',
           position: 'relative',
           overflow: 'hidden',
         }}

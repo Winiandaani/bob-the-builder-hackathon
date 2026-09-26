@@ -71,23 +71,23 @@ export default function LoginPage() {
     >
       <div
         style={{
-          background: '#241640',
-          border: '1px solid #3d2a5c',
+          background: 'rgba(22,36,58,0.92)',
+          border: '1px solid #263a52',
           borderRadius: '12px',
           padding: '2.5rem 2rem',
           width: '100%',
           maxWidth: '400px',
-          boxShadow: '0 0 0 1px #3d2a5c, 0 -3px 0 0 #6b21a8',
+          boxShadow: '0 0 0 1px #263a52, 0 -3px 0 0 #5fa8a0',
         }}
       >
         {/* Title */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h1
             style={{
-              fontFamily: 'var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif',
+              fontFamily: "'Cabinet Grotesk', system-ui, sans-serif",
               fontSize: '1.75rem',
               fontWeight: 800,
-              color: '#ff2d95',
+              color: '#5fa8a0',
               margin: '0 0 0.5rem',
               letterSpacing: '0.02em',
             }}
@@ -95,7 +95,7 @@ export default function LoginPage() {
             Mission Control
           </h1>
           {/* Typing effect — key changes when mode switches so it replays */}
-          <p style={{ color: '#9a8bb0', margin: 0, fontSize: '0.95rem' }}>
+          <p style={{ color: '#7d8ba0', margin: 0, fontSize: '0.95rem' }}>
             <TypingText key={`${pathname}-${mode}`} text={subtitle} />
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {/* Email */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <label style={{ color: '#9a8bb0', fontSize: '0.85rem', fontWeight: 500 }} htmlFor="email">
+            <label style={{ color: '#7d8ba0', fontSize: '0.85rem', fontWeight: 500 }} htmlFor="email">
               Email
             </label>
             <input
@@ -113,22 +113,22 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               style={{
-                background: '#1a1030',
-                border: '1px solid #3d2a5c',
+                background: 'rgba(15,27,46,0.9)',
+                border: '1px solid #263a52',
                 borderRadius: '6px',
                 padding: '0.6rem 0.75rem',
-                color: '#ede9f5',
+                color: '#dce4ec',
                 fontSize: '0.95rem',
                 outline: 'none',
               }}
-              onFocus={(e) => (e.target.style.borderColor = '#6b21a8')}
-              onBlur={(e) => (e.target.style.borderColor = '#3d2a5c')}
+              onFocus={(e) => (e.target.style.borderColor = '#5fa8a0')}
+              onBlur={(e) => (e.target.style.borderColor = '#263a52')}
             />
           </div>
 
           {/* Password */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <label style={{ color: '#9a8bb0', fontSize: '0.85rem', fontWeight: 500 }} htmlFor="password">
+            <label style={{ color: '#7d8ba0', fontSize: '0.85rem', fontWeight: 500 }} htmlFor="password">
               Password
             </label>
             <input
@@ -138,16 +138,16 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{
-                background: '#1a1030',
-                border: '1px solid #3d2a5c',
+                background: 'rgba(15,27,46,0.9)',
+                border: '1px solid #263a52',
                 borderRadius: '6px',
                 padding: '0.6rem 0.75rem',
-                color: '#ede9f5',
+                color: '#dce4ec',
                 fontSize: '0.95rem',
                 outline: 'none',
               }}
-              onFocus={(e) => (e.target.style.borderColor = '#6b21a8')}
-              onBlur={(e) => (e.target.style.borderColor = '#3d2a5c')}
+              onFocus={(e) => (e.target.style.borderColor = '#5fa8a0')}
+              onBlur={(e) => (e.target.style.borderColor = '#263a52')}
             />
           </div>
 
@@ -171,11 +171,11 @@ export default function LoginPage() {
           {message && (
             <div
               style={{
-                background: 'rgba(107,33,168,0.12)',
-                border: '1px solid #6b21a8',
+                background: 'rgba(95,168,160,0.1)',
+                border: '1px solid #5fa8a0',
                 borderRadius: '6px',
                 padding: '0.6rem 0.75rem',
-                color: '#ede9f5',
+                color: '#dce4ec',
                 fontSize: '0.875rem',
               }}
             >
@@ -188,8 +188,8 @@ export default function LoginPage() {
             type="submit"
             disabled={isLoading}
             style={{
-              background: '#6b21a8',
-              color: '#ede9f5',
+              background: '#5fa8a0',
+              color: '#0f1b2e',
               border: 'none',
               borderRadius: '6px',
               padding: '0.7rem 1rem',
@@ -206,14 +206,14 @@ export default function LoginPage() {
         </form>
 
         {/* Toggle */}
-        <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#9a8bb0' }}>
+        <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#7d8ba0' }}>
           {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
           <button
             onClick={toggleMode}
             style={{
               background: 'none',
               border: 'none',
-              color: '#ff2d95',
+              color: '#5fa8a0',
               cursor: 'pointer',
               fontSize: 'inherit',
               fontWeight: 600,

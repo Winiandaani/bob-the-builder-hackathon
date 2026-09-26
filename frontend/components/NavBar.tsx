@@ -19,8 +19,8 @@ export default function NavBar() {
   return (
     <nav
       style={{
-        background: '#241640',
-        borderBottom: '1px solid #3d2a5c',
+        background: 'rgba(15,27,46,0.92)',
+        borderBottom: '1px solid #263a52',
         padding: '0 1.5rem',
         display: 'flex',
         alignItems: 'center',
@@ -29,16 +29,17 @@ export default function NavBar() {
         position: 'sticky',
         top: 0,
         zIndex: 50,
+        backdropFilter: 'blur(8px)',
       }}
     >
       {/* Brand */}
       <Link
         href="/"
         style={{
-          fontFamily: 'var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif',
+          fontFamily: "'Cabinet Grotesk', system-ui, sans-serif",
           fontWeight: 800,
           fontSize: '1.1rem',
-          color: '#ff2d95',
+          color: '#5fa8a0',
           textDecoration: 'none',
           letterSpacing: '0.03em',
           flexShrink: 0,
@@ -58,16 +59,18 @@ export default function NavBar() {
       >
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
+          // Idea Planner → teal active; Code Explorer → orange active; others → teal
+          const activeColor = link.href === '/explore' ? '#c97b56' : '#5fa8a0';
           return (
             <Link
               key={link.href}
               href={link.href}
               style={{
-                color: isActive ? '#ff2d95' : '#9a8bb0',
+                color: isActive ? activeColor : '#7d8ba0',
                 textDecoration: 'none',
                 fontSize: '0.9rem',
-                fontWeight: isActive ? 700 : 500,
-                borderBottom: isActive ? '2px solid #ff2d95' : '2px solid transparent',
+                fontWeight: isActive ? 700 : 600,
+                borderBottom: isActive ? `2px solid ${activeColor}` : '2px solid transparent',
                 paddingBottom: '2px',
                 transition: 'color 0.15s',
               }}
@@ -84,7 +87,7 @@ export default function NavBar() {
           <>
             <span
               style={{
-                color: '#9a8bb0',
+                color: '#7d8ba0',
                 fontSize: '0.85rem',
                 maxWidth: '140px',
                 overflow: 'hidden',
@@ -99,8 +102,8 @@ export default function NavBar() {
               onClick={signOut}
               style={{
                 background: 'transparent',
-                border: '1px solid #3d2a5c',
-                color: '#9a8bb0',
+                border: '1px solid #263a52',
+                color: '#7d8ba0',
                 borderRadius: '6px',
                 padding: '4px 12px',
                 fontSize: '0.85rem',
@@ -114,8 +117,8 @@ export default function NavBar() {
           <Link
             href="/login"
             style={{
-              background: '#6b21a8',
-              color: '#ede9f5',
+              background: '#5fa8a0',
+              color: '#0f1b2e',
               borderRadius: '6px',
               padding: '4px 14px',
               fontSize: '0.85rem',
@@ -135,7 +138,7 @@ export default function NavBar() {
           style={{
             background: 'transparent',
             border: 'none',
-            color: '#9a8bb0',
+            color: '#7d8ba0',
             cursor: 'pointer',
             fontSize: '1.4rem',
             lineHeight: 1,

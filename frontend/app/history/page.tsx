@@ -71,7 +71,7 @@ export default function HistoryPage() {
   if (loading) {
     return (
       <main className="min-h-screen flex items-center justify-center">
-        <p style={{ color: '#9a8bb0' }}>Loading…</p>
+        <p style={{ color: '#7d8ba0' }}>Loading…</p>
       </main>
     );
   }
@@ -88,13 +88,13 @@ export default function HistoryPage() {
           <h1
             className="text-4xl font-bold"
             style={{
-              color: '#6b21a8',
-              fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif',
+              color: '#5fa8a0',
+              fontFamily: "'Cabinet Grotesk', system-ui, sans-serif",
             }}
           >
             Mission History
           </h1>
-          <p className="text-base" style={{ color: '#9a8bb0' }}>
+          <p className="text-base" style={{ color: '#7d8ba0', fontWeight: 500 }}>
             <TypingText key={pathname} text="Your saved plans and explored repos." />
           </p>
         </div>
@@ -104,16 +104,16 @@ export default function HistoryPage() {
           <div className="flex items-center gap-3">
             <h2
               className="text-xl font-semibold"
-              style={{ color: '#ede9f5', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+              style={{ color: '#dce4ec', fontFamily: "'Cabinet Grotesk', system-ui, sans-serif" }}
             >
               Idea Plans
             </h2>
             <span
               className="px-2 py-0.5 rounded-full text-xs font-bold"
               style={{
-                background: 'rgba(107,33,168,0.2)',
-                color: '#ff2d95',
-                border: '1px solid rgba(107,33,168,0.4)',
+                background: 'rgba(95,168,160,0.15)',
+                color: '#5fa8a0',
+                border: '1px solid rgba(95,168,160,0.35)',
               }}
             >
               {plans.length}
@@ -121,16 +121,16 @@ export default function HistoryPage() {
           </div>
 
           {plansLoading ? (
-            <p style={{ color: '#9a8bb0' }}>Loading…</p>
+            <p style={{ color: '#7d8ba0' }}>Loading…</p>
           ) : plans.length === 0 ? (
             <div
               className="rounded-xl p-6 text-center"
-              style={{ background: '#241640', border: '1px solid #3d2a5c' }}
+              style={{ background: 'rgba(22,36,58,0.92)', border: '1px solid #263a52' }}
             >
-              <p className="text-sm mb-2" style={{ color: '#9a8bb0' }}>
+              <p className="text-sm mb-2" style={{ color: '#7d8ba0' }}>
                 No plans saved yet.
               </p>
-              <a href="/" style={{ color: '#ff2d95' }} className="text-sm font-medium">
+              <a href="/" style={{ color: '#5fa8a0' }} className="text-sm font-medium">
                 → Try Idea Planner
               </a>
             </div>
@@ -154,16 +154,16 @@ export default function HistoryPage() {
           <div className="flex items-center gap-3">
             <h2
               className="text-xl font-semibold"
-              style={{ color: '#ede9f5', fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+              style={{ color: '#dce4ec', fontFamily: "'Cabinet Grotesk', system-ui, sans-serif" }}
             >
               Repo Explorations
             </h2>
             <span
               className="px-2 py-0.5 rounded-full text-xs font-bold"
               style={{
-                background: 'rgba(255,45,149,0.12)',
-                color: '#ff2d95',
-                border: '1px solid rgba(255,45,149,0.3)',
+                background: 'rgba(201,123,86,0.12)',
+                color: '#c97b56',
+                border: '1px solid rgba(201,123,86,0.3)',
               }}
             >
               {repos.length}
@@ -171,16 +171,16 @@ export default function HistoryPage() {
           </div>
 
           {reposLoading ? (
-            <p style={{ color: '#9a8bb0' }}>Loading…</p>
+            <p style={{ color: '#7d8ba0' }}>Loading…</p>
           ) : repos.length === 0 ? (
             <div
               className="rounded-xl p-6 text-center"
-              style={{ background: '#241640', border: '1px solid #3d2a5c' }}
+              style={{ background: 'rgba(22,36,58,0.92)', border: '1px solid #263a52' }}
             >
-              <p className="text-sm mb-2" style={{ color: '#9a8bb0' }}>
+              <p className="text-sm mb-2" style={{ color: '#7d8ba0' }}>
                 No repos explored yet.
               </p>
-              <a href="/explore" style={{ color: '#ff2d95' }} className="text-sm font-medium">
+              <a href="/explore" style={{ color: '#c97b56' }} className="text-sm font-medium">
                 → Try Code Explorer
               </a>
             </div>
