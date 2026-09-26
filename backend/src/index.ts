@@ -8,7 +8,9 @@ const app = express();
 const PORT = process.env.PORT ?? 3001;
 
 // Allow requests from the Next.js dev server
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ 
+  origin: ['http://localhost:3000', 'https://bob-the-builder-hackathon.vercel.app'] 
+}));
 
 // Parse incoming JSON request bodies
 app.use(express.json());
